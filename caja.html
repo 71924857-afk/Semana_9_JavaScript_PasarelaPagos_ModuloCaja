@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogísticaMax Perú - Módulo de Caja</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    main, .card, container { background: transparent !important; box-shadow: none !important; }
+  </style>
+</head>
+<body style="background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column; margin: 0;">
+
+  <!-- Header / Menú Principal -->
+  <header style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 100; padding: 15px 5%;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" style="text-decoration: none; font-size: 1.4rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+        <i class="fas fa-truck-moving" style="color: #f97316;"></i> LogísticaMax <span style="color: #f97316;">Perú</span>
+      </a>
+
+      <nav style="display: flex; gap: 15px; align-items: center;">
+        <a href="index.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-home"></i> Inicio</a>
+        <a href="registro.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-calculator"></i> Cotizador</a>
+        <a href="consulta.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-search"></i> Seguimiento</a>
+        <a href="pasarela.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-credit-card"></i> Pagar Flete</a>
+        <a href="caja.html" style="color: #ffffff; background: rgba(255,255,255,0.1); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-cash-register"></i> Caja</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main style="flex: 1; max-width: 650px; width: 90%; margin: 40px auto;">
+    
+    <div style="background: linear-gradient(145deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 35px; backdrop-filter: blur(12px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);">
+      
+      <div style="text-align: center; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px;">
+        <div style="width: 55px; height: 55px; background: linear-gradient(135deg, #f97316, #ea580c); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);">
+          <i class="fas fa-cash-register" style="font-size: 1.5rem; color: #ffffff;"></i>
+        </div>
+        <h2 style="color: #ffffff; margin: 0; font-size: 1.6rem; font-weight: 800;">Módulo de Caja Presencial</h2>
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 6px;">Ingresa el código del ticket para procesar el cobro en ventanilla y autorizar la garita.</p>
+      </div>
+
+      <form id="form-caja" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px;">
+        <div style="position: relative; width: 100%;">
+          <i class="fas fa-barcode" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #f97316; font-size: 1.2rem;"></i>
+          <input type="text" id="id-cotizacion" placeholder="Ingrese el código (Ej: COT-0001 o ID 1)" required style="width: 100%; box-sizing: border-box !important; padding: 14px 16px 14px 48px !important; background: rgba(15, 23, 42, 0.9) !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; border-radius: 10px !important; color: #ffffff !important; font-size: 1rem !important; outline: none !important; display: block !important;">
+        </div>
+        
+        <button type="submit" style="width: 100%; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; padding: 14px; border-radius: 10px; font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);">
+          <i class="fas fa-search"></i> Buscar Cotización Pendiente
+        </button>
+      </form>
+
+      <div id="resultado-caja"></div>
+    </div>
+
+  </main>
+
+  <footer style="background: #090d16; border-top: 1px solid rgba(255,255,255,0.05); padding: 20px; text-align: center; color: #64748b; font-size: 0.85rem; margin-top: auto;">
+    <p>&copy; 2026 LogísticaMax Perú. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Script incrustado directamente para evitar errores de ruta 404 -->
+  <script type="module">
+    import { sql } from './js/config/neon-config.js';
+
+    function formatearSoles(monto) {
+      return `S/ ${Number(monto).toLocaleString('es-PE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const formCaja = document.getElementById('form-caja');
+      const inputId = document.getElementById('id-cotizacion');
+      const contenedorResultado = document.getElementById('resultado-caja');
+
+      if (!formCaja) return;
+
+      formCaja.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!inputId || !contenedorResultado) return;
+
+        let rawVal = inputId.value.trim().toUpperCase();
+        let numId = rawVal.replace('COT-', '').replace(/^0+/, '');
+
+        if (!numId || isNaN(numId)) {
+          contenedorResultado.innerHTML = `
+            <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; padding: 15px; border-radius: 10px; text-align: center; font-weight: 700;">
+              <i class="fas fa-exclamation-circle"></i> Ingresa un código válido (Ejemplo: COT-0001).
+            </div>
+          `;
+          return;
+        }
+
+        contenedorResultado.innerHTML = `
+          <div style="text-align: center; color: #38bdf8; padding: 20px; font-weight: 700;">
+            <i class="fas fa-spinner fa-spin fa-2x"></i>
+            <p style="margin-top: 10px;">Buscando cotización en Neon DB...</p>
+          </div>
+        `;
+
+        try {
+          const res = await sql`SELECT * FROM cotizaciones_carga WHERE id = ${numId};`;
+
+          if (!res || res.length === 0) {
+            contenedorResultado.innerHTML = `
+              <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; padding: 20px; border-radius: 12px; text-align: center; font-weight: 700;">
+                <i class="fas fa-times-circle" style="font-size: 2rem; display: block; margin-bottom: 8px;"></i>
+                Cotización ${rawVal} no encontrada en la base de datos.
+              </div>
+            `;
+            return;
+          }
+
+          const cot = res[0];
+          const codigo = `COT-${String(cot.id).padStart(4, '0')}`;
+          const esMatpel = cot.matpel === true || cot.matpel === 'true';
+          const monto = Number(cot.monto_calculado) || 0;
+          const esPagado = cot.estado_pago === 'pagado';
+
+          contenedorResultado.innerHTML = `
+            <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); padding: 22px; border-radius: 14px; margin-top: 10px;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
+                <div>
+                  <span style="color: #94a3b8; font-size: 0.75rem; font-weight: 700;">CÓDIGO:</span><br>
+                  <strong style="color: white; font-size: 1.1rem;"><i class="fas fa-barcode" style="color: #f97316;"></i> ${codigo}</strong>
+                </div>
+                <div>
+                  <span style="color: #94a3b8; font-size: 0.75rem; font-weight: 700;">PESO CARGA:</span><br>
+                  <strong style="color: white; font-size: 1.1rem;">${cot.toneladas} TN</strong>
+                </div>
+                <div style="grid-column: span 2;">
+                  <span style="color: #94a3b8; font-size: 0.75rem; font-weight: 700;">TIPO CARGA:</span><br>
+                  <strong style="color: ${esMatpel ? '#f87171' : '#cbd5e1'}; font-size: 0.95rem;">
+                    ${esMatpel ? '<i class="fas fa-biohazard"></i> Carga Peligrosa (MATPEL +20%)' : 'Carga General'}
+                  </strong>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); padding: 14px; border-radius: 10px; margin-bottom: 20px;">
+                <span style="color: #cbd5e1; font-weight: 700; font-size: 0.9rem;">TOTAL A COBRAR:</span>
+                <strong style="color: #4ade80; font-size: 1.5rem; font-weight: 800;">${formatearSoles(monto)}</strong>
+              </div>
+
+              ${esPagado ? `
+                <div style="text-align: center; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: #4ade80; padding: 15px; border-radius: 10px; font-weight: 800;">
+                  <i class="fas fa-check-circle" style="font-size: 1.3rem;"></i> ¡ESTA COTIZACIÓN YA FUE PAGADA Y AUTORIZADA!
+                </div>
+              ` : `
+                <button id="btn-cobrar-caja" type="button" style="width: 100%; background: linear-gradient(135deg, #22c55e, #16a34a); color: #052e16; padding: 14px; border: none; border-radius: 10px; font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);">
+                  <i class="fas fa-cash-register"></i> Registrar Cobro y Habilitar Garita
+                </button>
+              `}
+            </div>
+          `;
+
+          const btnCobrar = document.getElementById('btn-cobrar-caja');
+          if (btnCobrar) {
+            btnCobrar.addEventListener('click', async () => {
+              btnCobrar.disabled = true;
+              btnCobrar.textContent = 'Procesando cobro...';
+
+              try {
+                await sql`
+                  UPDATE cotizaciones_carga 
+                  SET estado_pago = 'pagado', canal_pago = 'Caja Ventanilla' 
+                  WHERE id = ${cot.id};
+                `;
+
+                contenedorResultado.innerHTML = `
+                  <div style="text-align: center; background: rgba(34, 197, 94, 0.2); border: 1px solid rgba(34, 197, 94, 0.4); color: #4ade80; padding: 20px; border-radius: 12px; font-weight: 800;">
+                    <i class="fas fa-circle-check" style="font-size: 2.5rem; display: block; margin-bottom: 10px;"></i>
+                    ¡Cobro registrado con éxito en Ventanilla!<br>
+                    <span style="font-size: 0.9rem; font-weight: 600; color: #cbd5e1;">Salida en Garita autorizada correctamente.</span>
+                  </div>
+                `;
+              } catch (err) {
+                console.error(err);
+                alert('Error al registrar el cobro.');
+                btnCobrar.disabled = false;
+              }
+            });
+          }
+
+        } catch (err) {
+          console.error(err);
+          contenedorResultado.innerHTML = `
+            <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; padding: 15px; border-radius: 10px; text-align: center; font-weight: 700;">
+              Error al consultar DB: ${err.message}
+            </div>
+          `;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

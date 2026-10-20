@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogísticaMax Perú - Mis Envíos</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Forzar anulación de contenedores blancos y estrechos */
+    main, .card, container, #contenedor-envios {
+      max-width: 1200px !important;
+      width: 100% !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+  </style>
+</head>
+<body style="background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column; margin: 0;">
+
+  <!-- Header / Menú Principal -->
+  <header style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 100; padding: 15px 5%;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" style="text-decoration: none; font-size: 1.4rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+        <i class="fas fa-truck-moving" style="color: #f97316;"></i> LogísticaMax <span style="color: #f97316;">Perú</span>
+      </a>
+
+      <nav style="display: flex; gap: 15px; align-items: center;">
+        <a href="index.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-home"></i> Inicio</a>
+        <a href="registro.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-calculator"></i> Cotizador</a>
+        <a href="consulta.html" style="color: #ffffff; background: rgba(255,255,255,0.1); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-search"></i> Seguimiento</a>
+        <a href="pasarela.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-credit-card"></i> Pagar Flete</a>
+        <a href="caja.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-cash-register"></i> Caja</a>
+        
+        <a href="registro.html" style="background: #f97316; color: white; text-decoration: none; font-weight: 700; font-size: 0.85rem; padding: 8px 16px; border-radius: 6px; display: flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);">
+          <i class="fas fa-plus"></i> Nueva Cotización
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main style="flex: 1; max-width: 1200px !important; width: 90% !important; margin: 40px auto; background: transparent !important;">
+    
+    <!-- Hero / Título de Sección -->
+    <div style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9)); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 25px 30px; margin-bottom: 30px; backdrop-filter: blur(12px);">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <div>
+          <h1 style="margin: 0; font-size: 1.8rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-boxes-packing" style="color: #f97316;"></i> Mis Envíos Registrados
+          </h1>
+          <p style="margin: 8px 0 0 0; color: #94a3b8; font-size: 0.95rem;">
+            Consulta el estado de tus cotizaciones, canales de pago y autorizaciones de salida en garita.
+          </p>
+        </div>
+        <div style="background: rgba(249, 115, 22, 0.1); border: 1px solid rgba(249, 115, 22, 0.3); padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; color: #fdba74; font-weight: 600;">
+          <i class="fas fa-signal"></i> Sincronizado con Neon DB
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor dinámico de las tarjetas -->
+    <div id="contenedor-envios" style="width: 100% !important; background: transparent !important;">
+      <div style="text-align: center; padding: 60px; color: #94a3b8;">
+        <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: #f97316; margin-bottom: 15px;"></i>
+        <p style="font-size: 1rem;">Cargando tus envíos desde la base de datos...</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: #090d16; border-top: 1px solid rgba(255,255,255,0.05); padding: 20px; text-align: center; color: #64748b; font-size: 0.85rem; margin-top: auto;">
+    <p>&copy; 2026 LogísticaMax Perú. Todos los derechos reservados. | Transporte de Carga Pesada y Granel</p>
+  </footer>
+
+  <script type="module" src="js/consulta/consulta.js"></script>
+</body>
+</html>

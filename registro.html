@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogísticaMax Perú - Cotizador</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    main, .card, container {
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+  </style>
+</head>
+<body style="background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; min-height: 100vh; display: flex; flex-direction: column; margin: 0;">
+
+  <!-- Header / Menú Principal -->
+  <header style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.1); position: sticky; top: 0; z-index: 100; padding: 15px 5%;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" style="text-decoration: none; font-size: 1.4rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+        <i class="fas fa-truck-moving" style="color: #f97316;"></i> LogísticaMax <span style="color: #f97316;">Perú</span>
+      </a>
+
+      <nav style="display: flex; gap: 15px; align-items: center;">
+        <a href="index.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-home"></i> Inicio</a>
+        <a href="registro.html" style="color: #ffffff; background: rgba(255,255,255,0.1); text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-calculator"></i> Cotizador</a>
+        <a href="consulta.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-search"></i> Seguimiento</a>
+        <a href="pasarela.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-credit-card"></i> Pagar Flete</a>
+        <a href="caja.html" style="color: #cbd5e1; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding: 6px 12px; border-radius: 6px;"><i class="fas fa-cash-register"></i> Caja</a>
+        
+        <button id="btn-cerrar-sesion" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); padding: 8px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+          <i class="fas fa-right-from-bracket"></i> Cerrar Sesión
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main style="flex: 1; max-width: 900px; width: 90%; margin: 35px auto;">
+    
+    <!-- Formulario de Cotización Dark -->
+    <div style="background: linear-gradient(145deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95)); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 35px; backdrop-filter: blur(12px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); margin-bottom: 30px;">
+      
+      <div style="margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 15px;">
+        <h2 style="color: #ffffff; margin: 0; font-size: 1.6rem; font-weight: 800; display: flex; align-items: center; gap: 10px;">
+          <i class="fas fa-calculator" style="color: #f97316;"></i> Registrar Nueva Cotización
+        </h2>
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 6px;">Calcula la tarifa oficial de flete de acuerdo al tonelaje y tipo de carga.</p>
+      </div>
+
+      <form id="form-registro" style="display: flex; flex-direction: column; gap: 20px;">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">Destinatario</label>
+            <input type="text" placeholder="Nombre completo o empresa" required style="width: 100%; box-sizing: border-box; padding: 12px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; color: #ffffff; outline: none;">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">Destino</label>
+            <input type="text" placeholder="Ej: Arequipa, Cusco, Tacna" required style="width: 100%; box-sizing: border-box; padding: 12px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; color: #ffffff; outline: none;">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; align-items: center;">
+          <div>
+            <label style="display: block; font-size: 0.8rem; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; text-transform: uppercase;">Peso en Toneladas (t)</label>
+            <input type="number" id="toneladas" min="1" step="0.5" value="1" required style="width: 100%; box-sizing: border-box; padding: 12px; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; color: #ffffff; font-weight: 700; outline: none;">
+          </div>
+
+          <div style="padding-top: 20px;">
+            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; background: rgba(15, 23, 42, 0.5); padding: 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+              <input type="checkbox" id="matpel" style="width: 18px; height: 18px; accent-color: #f97316;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: #f87171;">
+                <i class="fas fa-biohazard"></i> Carga Peligrosa (MATPEL +20%)
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Subtotal Estimado -->
+        <div style="background: rgba(34, 197, 94, 0.08); border: 1px solid rgba(34, 197, 94, 0.2); padding: 15px; border-radius: 12px; text-align: center; margin-top: 5px;">
+          <span style="display: block; font-size: 0.8rem; font-weight: 700; color: #94a3b8; text-transform: uppercase;">Monto Estimado del Flete:</span>
+          <strong id="monto-estimado" style="color: #4ade80; font-size: 1.8rem; font-weight: 800;">S/ 450.00</strong>
+        </div>
+
+        <button type="submit" style="background: linear-gradient(135deg, #f97316, #ea580c); color: #ffffff; padding: 14px; border: none; border-radius: 10px; font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);">
+          <i class="fas fa-truck-fast"></i> Registrar y Guardar Envío
+        </button>
+      </form>
+
+      <p id="mensaje" style="text-align: center; font-weight: 700; margin-top: 15px; min-height: 20px;"></p>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: #090d16; border-top: 1px solid rgba(255,255,255,0.05); padding: 20px; text-align: center; color: #64748b; font-size: 0.85rem; margin-top: auto;">
+    <p>&copy; 2026 LogísticaMax Perú. Todos los derechos reservados.</p>
+  </footer>
+
+  <script type="module" src="js/registro/registro.js"></script>
+</body>
+</html>
